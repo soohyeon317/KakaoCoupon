@@ -1,4 +1,4 @@
-package com.example.kakaocoupon.api.coupon.v1.coupon;
+package com.example.kakaocoupon.api.v1.coupon.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

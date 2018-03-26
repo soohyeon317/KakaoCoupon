@@ -1,5 +1,7 @@
-package com.example.kakaocoupon.api.coupon.v1.coupon;
+package com.example.kakaocoupon.api.v1.coupon.service;
 
+import com.example.kakaocoupon.api.v1.coupon.dao.CouponDao;
+import com.example.kakaocoupon.api.v1.coupon.dto.Coupon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
