@@ -25,26 +25,11 @@ repositories {
 
 
 dependencies {
-	/* JPA */
+
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-
-	/* 웹 */
 	compile('org.springframework.boot:spring-boot-starter-web')
-
-	/* Lombok */
 	compileOnly('org.projectlombok:lombok')
-
-
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-
-
-
-	/* h2 DB */
 	compile('com.h2database:h2')
-
-	/* Spring Boot에서의 jsp 설정 */
-//	compile("javax.servlet:jstl")
-//	compile("org.apache.tomcat.embed:tomcat-embed-jasper")
-
 
 }
