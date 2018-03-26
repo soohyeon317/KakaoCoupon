@@ -43,6 +43,5 @@ public class Coupon {
         private Integer p_size;
         private String order_by;
         private String seq;
-
     }
 }
