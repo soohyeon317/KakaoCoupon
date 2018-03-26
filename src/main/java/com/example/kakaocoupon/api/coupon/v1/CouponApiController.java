@@ -1,7 +1,7 @@
-package com.example.kakaocoupon.api;
+package com.example.kakaocoupon.api.coupon.v1;
 
-import com.example.kakaocoupon.api.coupon.Coupon;
-import com.example.kakaocoupon.api.coupon.CouponService;
+import com.example.kakaocoupon.api.coupon.v1.coupon.Coupon;
+import com.example.kakaocoupon.api.coupon.v1.coupon.CouponService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -19,7 +19,7 @@ public class CouponApiController {
 
     private static final Logger logger = LoggerFactory.getLogger(CouponApiController.class);
 
-    @Resource(name = "couponService")
+    @Resource(name = "couponServiceV1")
     CouponService couponService;
 
     /**

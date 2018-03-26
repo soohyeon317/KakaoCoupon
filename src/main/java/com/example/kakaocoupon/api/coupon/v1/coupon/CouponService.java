@@ -1,4 +1,4 @@
-package com.example.kakaocoupon.api.coupon;
+package com.example.kakaocoupon.api.coupon.v1.coupon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-@Service("couponService")
+@Service("couponServiceV1")
 public class CouponService {
     @Autowired
     CouponDao couponDao;
