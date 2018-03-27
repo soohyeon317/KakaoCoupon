@@ -4,7 +4,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
         $stateProvider
             .state('home', {
                 url: '',
-                templateUrl: 'list.html',
+                templateUrl: 'partials/list.html',
                 controller:'CouponController',
                 controllerAs:'ctrl',
                 resolve: {
