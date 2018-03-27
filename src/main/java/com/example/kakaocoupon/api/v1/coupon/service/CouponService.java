@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service("couponServiceV1")
+@Slf4j
 public class CouponService {
     private static final Logger logger = LoggerFactory.getLogger(CouponService.class);
 

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/v1")
+@Slf4j
 public class CouponApiController {
     private static final Logger logger = LoggerFactory.getLogger(CouponApiController.class);
 
