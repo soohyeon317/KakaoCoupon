@@ -25,7 +25,7 @@ public class CouponService {
     @Autowired
     private CouponDao couponDao;
 
-    // 페이지 정보에 따라 쿠폰 리스트 조회
+    // 페이지 정보에 해당하는 쿠폰 리스트 조회
     public Page<Coupon> getCouponsByPageInfo(Coupon.GetParam pageInfo) {
         logger.info("getCouponsByPageInfo : {}", pageInfo);
 

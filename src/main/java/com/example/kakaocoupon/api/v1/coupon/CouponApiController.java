@@ -56,7 +56,7 @@ public class CouponApiController {
     }
 
     /**
-     * 현재 페이지 번호에 해당하는 쿠폰 리스트 조회 API
+     * 페이지 정보에 해당하는 쿠폰 리스트 조회 API
      *
      * @return
      */
