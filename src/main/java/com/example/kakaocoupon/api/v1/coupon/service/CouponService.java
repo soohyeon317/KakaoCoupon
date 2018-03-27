@@ -41,7 +41,7 @@ public class CouponService {
             // 현재 쿠폰아이디 리스트 조회
             couponNumList = couponDao.findAll().stream().map(c->c.getCoupon_num()).collect(Collectors.toList());
             // 쿠폰아이디 랜덤 생성
-            couponNum = createRandomCouponNum();
+            couponNum = createRandomCouponNum(16, "-", 4);
         }while(couponNumList.contains(couponNum));
 
 
@@ -59,7 +59,7 @@ public class CouponService {
     }
 
     // 쿠폰번호 랜덤 생성
-    public String createRandomCouponNum(){
+    public String createRandomCouponNum(Integer strLength, String Separator, Integer pos) {
         char[] characters = {
                 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
                 ,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'
@@ -68,11 +68,9 @@ public class CouponService {
         StringBuffer sb = new StringBuffer();
         Random random = new Random();
 
-        for( int i = 0 ; i < 16 ; i++ ){
+        for(int i = 0; i < strLength; i++) {
             sb.append( characters[ random.nextInt( characters.length ) ] );
-
-            // 4자리마다 구분자 추가, 맨 마직막에는 생략
-            if ( i%4==3 && i != 15) sb.append("-");
+            if (i%pos == pos-1 && i != strLength-1) sb.append(Separator);
         }
 
         return sb.toString();
