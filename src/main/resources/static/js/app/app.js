@@ -10,7 +10,6 @@ app.config(['$stateProvider', '$urlRouterProvider',
                 resolve: {
                     coupons: function ($q, CouponService) {
                         console.log('Load coupons');
-
                         var deferred = $q.defer();
                         CouponService.loadCouponsOfFirstPage().then(deferred.resolve, deferred.resolve);
                         return deferred.promise;
