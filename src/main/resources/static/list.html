@@ -1,0 +1,38 @@
+<!-- 이메일 입력 -->
+<div>
+    <div style="font-weight:bold">* 이메일을 입력하세요.</div>
+    <input type="text" name="txtEmail" id="txtEmail">
+    <button type="button" id="btnEmail" style="font-weight:bold">쿠폰 발급</button>
+</div>
+
+<br>
+
+<!-- 발급된 쿠폰 리스트 출력 -->
+<div>
+    <span style="font-weight:bold"> * 발급된 쿠폰정보 리스트</span>
+    <table width="100%" border="1px" border-style="solid">
+        <tr style="text-align:center;background-color:yellow;font-weight:bold">
+            <td>Id</td>
+            <td>Email</td>
+            <td>Coupon</td>
+            <td>Datetime</td>
+        </tr>
+        <tr align="center" ng-repeat="c in ctrl.getCoupons()" >
+            <td ng-bind="c.id"></td>
+            <td ng-bind="c.email"></td>
+            <td ng-bind="c.coupon_num"></td>
+            <td ng-bind="c.datetime"></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- 페이지 출력 -->
+    <div align="center">
+            <span ng-repeat="p in ctrl.getPages()">
+                <a href="javascript:void(0);" ng-click="ctrl.getCouponsByPgNum(p)" style="text-decoration:none">{{p}} </a>
+            </span>
+    </div>
+
+    <!--<input type="button" ng-value="ctrl.getPgNum()" name="pgNum" id="pgNum">-->
+</div>
