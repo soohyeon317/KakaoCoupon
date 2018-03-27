@@ -1,4 +1,5 @@
 'use strict';
+
 angular.module('app').controller('CouponController',
     ['CouponService', '$scope',  function( CouponService) {
         var self = this;
@@ -10,18 +11,22 @@ angular.module('app').controller('CouponController',
         self.getCoupons = getCoupons;
         self.getPages = getPages;
 
+        // 현재 페이지에 해당하는 쿠폰 리스트 가져오기
         function getCoupons(){
             return CouponService.getCoupons();
         }
 
+        // 해당 페이지 번호에 대한 쿠폰 리스트 가져오기
         function getCouponsByPgNum(pNum){
             return CouponService.getCouponsByPgNum(pNum);
         }
 
+        // 페이지 번호들 가져오기
         function getPages() {
             return CouponService.getPages();
         }
 
+        // 쿠폰 생성하기
         function createCoupon(email) {
             CouponService.createCoupon(email);
         }

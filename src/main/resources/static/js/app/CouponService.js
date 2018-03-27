@@ -1,4 +1,5 @@
 'use strict'; // 정확한 오류 검사에 도움
+
 angular.module('app').factory('CouponService',
     ['$localStorage', '$http', '$q',
         function ($localStorage, $http, $q) {
@@ -37,6 +38,7 @@ angular.module('app').factory('CouponService',
                 return deferred.promise;
             }
 
+            // 해당 페이지 번호에 대한 쿠폰 리스트 조회
             function getCouponsByPgNum(pNum) {
                 console.log('Fetching coupons of p.'+pNum+'..');
 
@@ -54,14 +56,17 @@ angular.module('app').factory('CouponService',
                 });
             }
 
+            // 현재 페이지 번호에 해당하는 쿠폰 리스트 가져오기
             function getCoupons() {
                 return $localStorage.coupons;
             }
 
+            // 페이지 번호들 가져오기
             function getPages() {
                 return $localStorage.pages;
             }
 
+            // 쿠폰 생성하기
             function createCoupon(email) {
                 if( email == "" || !isEmailFormat(email)) {
                     alert("올바른 이메일 주소를 입력해주세요");
@@ -91,7 +96,7 @@ angular.module('app').factory('CouponService',
                 $localStorage.pages = pages;
             }
 
-            // 이메일 형식 검증
+            // 이메일 형식 검사
             function isEmailFormat(email) {
                 var regexp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
                 return regexp.test(email);
