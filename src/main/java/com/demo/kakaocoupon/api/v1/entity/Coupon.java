@@ -1,4 +1,4 @@
-package com.demo.kakaocoupon.api.v1.domain;
+package com.demo.kakaocoupon.api.v1.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

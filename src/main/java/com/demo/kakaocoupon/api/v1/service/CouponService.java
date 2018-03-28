@@ -1,6 +1,6 @@
 package com.demo.kakaocoupon.api.v1.service;
 
-import com.demo.kakaocoupon.api.v1.domain.Coupon;
+import com.demo.kakaocoupon.api.v1.entity.Coupon;
 import com.demo.kakaocoupon.api.v1.repository.CouponRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

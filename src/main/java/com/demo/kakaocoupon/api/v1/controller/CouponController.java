@@ -1,6 +1,6 @@
-package com.demo.kakaocoupon.api.v1;
+package com.demo.kakaocoupon.api.v1.controller;
 
-import com.demo.kakaocoupon.api.v1.domain.Coupon;
+import com.demo.kakaocoupon.api.v1.entity.Coupon;
 import com.demo.kakaocoupon.api.v1.service.CouponService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/api/v1")
 @Slf4j
-public class CouponApiController {
+public class CouponController {
 
     @Resource(name = "couponServiceV1")
     private CouponService couponService;
