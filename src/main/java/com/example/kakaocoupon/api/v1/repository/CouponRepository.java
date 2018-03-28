@@ -1,6 +1,6 @@
-package com.example.kakaocoupon.api.v1.coupon.repository;
+package com.example.kakaocoupon.api.v1.repository;
 
-import com.example.kakaocoupon.api.v1.coupon.entity.Coupon;
+import com.example.kakaocoupon.api.v1.domain.Coupon;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

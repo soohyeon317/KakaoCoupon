@@ -1,7 +1,7 @@
-package com.example.kakaocoupon.api.v1.coupon.service;
+package com.example.kakaocoupon.api.v1.service;
 
-import com.example.kakaocoupon.api.v1.coupon.repository.CouponRepository;
-import com.example.kakaocoupon.api.v1.coupon.entity.Coupon;
+import com.example.kakaocoupon.api.v1.repository.CouponRepository;
+import com.example.kakaocoupon.api.v1.domain.Coupon;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
