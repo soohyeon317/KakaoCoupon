@@ -1,7 +1,7 @@
-package com.example.kakaocoupon.api.v1;
+package com.demo.kakaocoupon.api.v1;
 
-import com.example.kakaocoupon.api.v1.domain.Coupon;
-import com.example.kakaocoupon.api.v1.service.CouponService;
+import com.demo.kakaocoupon.api.v1.domain.Coupon;
+import com.demo.kakaocoupon.api.v1.service.CouponService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;

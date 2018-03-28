@@ -1,4 +1,4 @@
-package com.example.kakaocoupon;
+package com.demo.kakaocoupon;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
