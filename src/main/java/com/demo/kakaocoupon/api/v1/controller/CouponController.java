@@ -31,7 +31,7 @@ public class CouponController {
      */
     @RequestMapping(value = "/coupons", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon.ParamCreateCoupon param)  {
-        log.info("Creating Coupon : {}", param.getEmail());
+        log.info("Creating Coupon : {}", param);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -42,7 +42,7 @@ public class CouponController {
             return new ResponseEntity<>(null, httpHeaders,HttpStatus.CONFLICT);
         }
 
-        Coupon coupon = couponService.saveCoupon(param.getEmail());
+        Coupon coupon = couponService.saveCoupon(param);
         if(coupon == null) {
             log.error("Unable to create. Error occured while creating a coupon : param = {}", param.getEmail());
 

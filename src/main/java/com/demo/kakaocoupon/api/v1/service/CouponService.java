@@ -40,8 +40,8 @@ public class CouponService {
     }
 
     // 쿠폰 생성
-    public Coupon saveCoupon(String email) {
-        log.info("saveCoupon : {}", email);
+    public Coupon saveCoupon(Coupon.ParamCreateCoupon param) {
+        log.info("saveCoupon : {}", param);
 
         List<String> couponNumList = null;
         String couponNum = null;
@@ -63,7 +63,7 @@ public class CouponService {
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         Coupon coupon = Coupon.builder()
-                            .email(email)
+                            .email(param.getEmail())
                             .coupon_num(couponNum)
                             .datetime(datetime)
                             .build();
