@@ -26,25 +26,25 @@ public class CouponController {
     /**
      * 쿠폰 생성 API
      *
-     * @param couponParam
+     * @param param
      * @return
      */
     @RequestMapping(value = "/coupons", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon.ParamCreateCoupon couponParam)  {
-        log.info("Creating Coupon : {}", couponParam.getEmail());
+    public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon.ParamCreateCoupon param)  {
+        log.info("Creating Coupon : {}", param.getEmail());
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        if (couponService.isEmailExist(couponParam.getEmail())) {
-            log.error("Unable to create. A coupon with {} already exist", couponParam.getEmail());
+        if (couponService.isEmailExist(param.getEmail())) {
+            log.error("Unable to create. A coupon with {} already exist", param.getEmail());
 
             return new ResponseEntity<>(null, httpHeaders,HttpStatus.CONFLICT);
         }
 
-        Coupon coupon = couponService.saveCoupon(couponParam.getEmail());
+        Coupon coupon = couponService.saveCoupon(param.getEmail());
         if(coupon == null) {
-            log.error("Unable to create. Error occured while creating a coupon : param = {}", couponParam.getEmail());
+            log.error("Unable to create. Error occured while creating a coupon : param = {}", param.getEmail());
 
             return new ResponseEntity<>(null, httpHeaders,HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -55,18 +55,19 @@ public class CouponController {
     /**
      * 페이지 정보에 해당하는 쿠폰 리스트 조회 API
      *
+     *@param param
      * @return
      */
     @RequestMapping(value = "/coupons", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Page<Coupon>> getCouponsByPageInfo(Coupon.ParamPageInfo pageInfo)  {
-        log.info("Fetching Coupons : {}", pageInfo);
+    public ResponseEntity<Page<Coupon>> getCouponsByPageInfo(Coupon.ParamPageInfo param)  {
+        log.info("Fetching Coupons : {}", param);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Page<Coupon> coupons = couponService.getCouponsByPageInfo(pageInfo);
+        Page<Coupon> coupons = couponService.getCouponsByPageInfo(param);
         if(coupons == null) {
-            log.error("Unable to fetch. Error occured while fetching coupons : pageInfo = {}", pageInfo);
+            log.error("Unable to fetch. Error occured while fetching coupons : pageInfo = {}", param);
 
             return new ResponseEntity<>(null, httpHeaders,HttpStatus.INTERNAL_SERVER_ERROR);
         }
