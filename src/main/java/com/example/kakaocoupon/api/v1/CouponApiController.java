@@ -3,8 +3,6 @@ package com.example.kakaocoupon.api.v1;
 import com.example.kakaocoupon.api.v1.domain.Coupon;
 import com.example.kakaocoupon.api.v1.service.CouponService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,8 +20,6 @@ import javax.annotation.Resource;
 @Slf4j
 public class CouponApiController {
 
-    private static final Logger logger = LoggerFactory.getLogger(CouponApiController.class);
-
     @Resource(name = "couponServiceV1")
     private CouponService couponService;
 
@@ -35,20 +31,20 @@ public class CouponApiController {
      */
     @RequestMapping(value = "/coupons", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon.PostParam couponParam)  {
-        logger.info("Creating Coupon : {}", couponParam.getEmail());
+        log.info("Creating Coupon : {}", couponParam.getEmail());
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         if (couponService.isEmailExist(couponParam.getEmail())) {
-            logger.error("Unable to create. A coupon with {} already exist", couponParam.getEmail());
+            log.error("Unable to create. A coupon with {} already exist", couponParam.getEmail());
 
             return new ResponseEntity<>(null, httpHeaders,HttpStatus.CONFLICT);
         }
 
         Coupon coupon = couponService.saveCoupon(couponParam.getEmail());
         if(coupon == null) {
-            logger.error("Unable to create. Error occured while creating a coupon : param = {}", couponParam.getEmail());
+            log.error("Unable to create. Error occured while creating a coupon : param = {}", couponParam.getEmail());
 
             return new ResponseEntity<>(null, httpHeaders,HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -63,14 +59,14 @@ public class CouponApiController {
      */
     @RequestMapping(value = "/coupons", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Page<Coupon>> getCouponsByPageInfo(Coupon.GetParam pageInfo)  {
-        logger.info("Fetching Coupons : {}", pageInfo);
+        log.info("Fetching Coupons : {}", pageInfo);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         Page<Coupon> coupons = couponService.getCouponsByPageInfo(pageInfo);
         if(coupons == null) {
-            logger.error("Unable to fetch. Error occured while fetching coupons : pageInfo = {}", pageInfo);
+            log.error("Unable to fetch. Error occured while fetching coupons : pageInfo = {}", pageInfo);
 
             return new ResponseEntity<>(null, httpHeaders,HttpStatus.INTERNAL_SERVER_ERROR);
         }

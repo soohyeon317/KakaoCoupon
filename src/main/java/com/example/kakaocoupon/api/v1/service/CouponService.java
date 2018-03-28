@@ -1,10 +1,8 @@
 package com.example.kakaocoupon.api.v1.service;
 
-import com.example.kakaocoupon.api.v1.repository.CouponRepository;
 import com.example.kakaocoupon.api.v1.domain.Coupon;
+import com.example.kakaocoupon.api.v1.repository.CouponRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,14 +19,12 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CouponService {
 
-    private static final Logger logger = LoggerFactory.getLogger(CouponService.class);
-
     @Autowired
     private CouponRepository couponRepository;
 
     // 페이지 정보에 해당하는 쿠폰 리스트 조회
     public Page<Coupon> getCouponsByPageInfo(Coupon.GetParam pageInfo) {
-        logger.info("getCouponsByPageInfo : {}", pageInfo);
+        log.info("getCouponsByPageInfo : {}", pageInfo);
 
         Sort.Direction seq = pageInfo.getSeq().toLowerCase().startsWith("d") ? Sort.Direction.DESC : Sort.Direction.ASC;
         PageRequest pageRequest = PageRequest.of(pageInfo.getP_num() - 1, pageInfo.getP_size(), seq, pageInfo.getOrder_by());
@@ -38,14 +34,14 @@ public class CouponService {
 
     // 이메일 중복 체크
     public Boolean isEmailExist(String email) {
-        logger.info("isEmailExist : {}", email);
+        log.info("isEmailExist : {}", email);
 
         return couponRepository.isEmailExist(email);
     }
 
     // 쿠폰 생성
     public Coupon saveCoupon(String email) {
-        logger.info("saveCoupon : {}", email);
+        log.info("saveCoupon : {}", email);
 
         List<String> couponNumList = null;
         String couponNum = null;
@@ -77,7 +73,7 @@ public class CouponService {
 
     // 쿠폰번호 랜덤 생성
     public String createRandomCouponNum(int strLength, String Separator, int pos) {
-        logger.info("createRandomCouponNum : {},{},{}", strLength, Separator, pos);
+        log.info("createRandomCouponNum : {},{},{}", strLength, Separator, pos);
 
         final char[] characters = {
                 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
