@@ -3,6 +3,7 @@
 angular.module('app').factory('CouponService',
     ['$localStorage', '$http', '$q',
         function ($localStorage, $http, $q) {
+            var apiUriV1 = 'http://localhost:8092/api/v1';
             var factory = {
                 loadCouponsOfFirstPage: loadCouponsOfFirstPage,
                 getCouponsByPgNum: getCouponsByPgNum,
@@ -16,7 +17,7 @@ angular.module('app').factory('CouponService',
             function loadCouponsOfFirstPage() {
                 console.log('Fetching coupons of first page..');
                 var deferred = $q.defer();
-                $http.get('http://localhost:8092/api/v1/coupons?p_num=1&p_size=5&order_by=id&seq=asc')
+                $http.get(apiUriV1+'/coupons?p_num=1&p_size=5&order_by=id&seq=asc')
                     .then(
                         function (response) {
                             console.log('Fetched successfully coupons of first page');
@@ -43,7 +44,7 @@ angular.module('app').factory('CouponService',
                 console.log('Fetching coupons of p.'+pNum+'..');
 
                 // 현재 페이지 번호에 해당하는 쿠폰 리스트 조회
-                $http.get('http://localhost:8092/api/v1/coupons?p_num='+pNum+'&p_size=5&order_by=id&seq=asc').then(function(response) {
+                $http.get(apiUriV1+'/coupons?p_num='+pNum+'&p_size=5&order_by=id&seq=asc').then(function(response) {
                     console.log('Fetched successfully coupons of p.'+pNum+'..');
                     $localStorage.coupons = response.data.content;
                     $localStorage.pNum = pNum;
@@ -77,7 +78,7 @@ angular.module('app').factory('CouponService',
                     }
 
                     // 쿠폰 데이터 생성
-                    $http.post('http://localhost:8092/api/v1/coupons', postData).then(function() {
+                    $http.post(apiUriV1+'/coupons', postData).then(function() {
                         // 현재 페이지 번호에 해당하는 쿠폰 리스트 출력 및 페이지 개수 갱신
                         getCouponsByPgNum($localStorage.pNum);
                         alert("쿠폰이 발급되었습니다.")
@@ -102,4 +103,5 @@ angular.module('app').factory('CouponService',
                 return regexp.test(email);
             }
         }
-    ]);
+    ]
+);
