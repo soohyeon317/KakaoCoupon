@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @Service("couponServiceV1")
 @Slf4j
 public class CouponService {
+
     private static final Logger logger = LoggerFactory.getLogger(CouponService.class);
 
     @Autowired
@@ -93,4 +94,5 @@ public class CouponService {
 
         return sb.toString();
     }
+
 }

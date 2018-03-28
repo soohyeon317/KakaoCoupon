@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TB_COUPON")
 public class Coupon {
+
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -44,4 +45,5 @@ public class Coupon {
         private String order_by;
         private String seq;
     }
+
 }

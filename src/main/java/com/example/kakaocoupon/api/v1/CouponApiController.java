@@ -21,6 +21,7 @@ import javax.annotation.Resource;
 @RequestMapping("/api/v1")
 @Slf4j
 public class CouponApiController {
+
     private static final Logger logger = LoggerFactory.getLogger(CouponApiController.class);
 
     @Resource(name = "couponServiceV1")
@@ -76,4 +77,5 @@ public class CouponApiController {
 
         return new ResponseEntity<>(coupons, httpHeaders, HttpStatus.OK);
     }
+
 }
