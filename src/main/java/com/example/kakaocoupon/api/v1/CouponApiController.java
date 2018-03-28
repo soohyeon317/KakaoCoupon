@@ -30,7 +30,7 @@ public class CouponApiController {
      * @return
      */
     @RequestMapping(value = "/coupons", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon.PostParam couponParam)  {
+    public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon.ParamCreateCoupon couponParam)  {
         log.info("Creating Coupon : {}", couponParam.getEmail());
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -58,7 +58,7 @@ public class CouponApiController {
      * @return
      */
     @RequestMapping(value = "/coupons", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Page<Coupon>> getCouponsByPageInfo(Coupon.GetParam pageInfo)  {
+    public ResponseEntity<Page<Coupon>> getCouponsByPageInfo(Coupon.ParamPageInfo pageInfo)  {
         log.info("Fetching Coupons : {}", pageInfo);
 
         HttpHeaders httpHeaders = new HttpHeaders();

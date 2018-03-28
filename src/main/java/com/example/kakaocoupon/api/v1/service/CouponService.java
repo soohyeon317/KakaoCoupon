@@ -23,7 +23,7 @@ public class CouponService {
     private CouponRepository couponRepository;
 
     // 페이지 정보에 해당하는 쿠폰 리스트 조회
-    public Page<Coupon> getCouponsByPageInfo(Coupon.GetParam pageInfo) {
+    public Page<Coupon> getCouponsByPageInfo(Coupon.ParamPageInfo pageInfo) {
         log.info("getCouponsByPageInfo : {}", pageInfo);
 
         Sort.Direction seq = pageInfo.getSeq().toLowerCase().startsWith("d") ? Sort.Direction.DESC : Sort.Direction.ASC;

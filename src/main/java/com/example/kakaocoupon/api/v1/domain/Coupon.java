@@ -32,14 +32,14 @@ public class Coupon {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class PostParam {
+    public static class ParamCreateCoupon {
         private String email;
     }
 
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class GetParam {
+    public static class ParamPageInfo {
         private Integer p_num;
         private Integer p_size;
         private String order_by;
