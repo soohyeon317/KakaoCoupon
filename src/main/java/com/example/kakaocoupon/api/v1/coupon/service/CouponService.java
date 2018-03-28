@@ -1,7 +1,7 @@
 package com.example.kakaocoupon.api.v1.coupon.service;
 
-import com.example.kakaocoupon.api.v1.coupon.dao.CouponDao;
-import com.example.kakaocoupon.api.v1.coupon.dto.Coupon;
+import com.example.kakaocoupon.api.v1.coupon.repository.CouponRepository;
+import com.example.kakaocoupon.api.v1.coupon.entity.Coupon;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class CouponService {
     private static final Logger logger = LoggerFactory.getLogger(CouponService.class);
 
     @Autowired
-    private CouponDao couponDao;
+    private CouponRepository couponRepository;
 
     // 페이지 정보에 해당하는 쿠폰 리스트 조회
     public Page<Coupon> getCouponsByPageInfo(Coupon.GetParam pageInfo) {
@@ -32,14 +32,14 @@ public class CouponService {
         Sort.Direction seq = pageInfo.getSeq().toLowerCase().startsWith("d") ? Sort.Direction.DESC : Sort.Direction.ASC;
         PageRequest pageRequest = PageRequest.of(pageInfo.getP_num() - 1, pageInfo.getP_size(), seq, pageInfo.getOrder_by());
 
-        return couponDao.findAll(pageRequest);
+        return couponRepository.findAll(pageRequest);
     }
 
     // 이메일 중복 체크
     public Boolean isEmailExist(String email) {
         logger.info("isEmailExist : {}", email);
 
-        return couponDao.isEmailExist(email);
+        return couponRepository.isEmailExist(email);
     }
 
     // 쿠폰 생성
@@ -55,7 +55,7 @@ public class CouponService {
 
         do {
             // 현재 쿠폰아이디 리스트 조회
-            couponNumList = couponDao.findAll().stream().map(c->c.getCoupon_num()).collect(Collectors.toList());
+            couponNumList = couponRepository.findAll().stream().map(c->c.getCoupon_num()).collect(Collectors.toList());
             // 쿠폰아이디 랜덤 생성
             couponNum = createRandomCouponNum(coupNumLength, coupNumSeprt, pos);
         }while(couponNumList.contains(couponNum));
@@ -71,7 +71,7 @@ public class CouponService {
                             .datetime(datetime)
                             .build();
 
-        return couponDao.save(coupon);
+        return couponRepository.save(coupon);
     }
 
     // 쿠폰번호 랜덤 생성
