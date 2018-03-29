@@ -29,4 +29,5 @@ dependencies {
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile('com.h2database:h2')
+	compile('javax.xml.bind:jaxb-api')
 }
