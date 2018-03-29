@@ -16,11 +16,12 @@ angular.module('app').factory('CouponService',
             // 첫페이지에 해당하는 쿠폰리스트 조회
             function loadCouponsOfFirstPage() {
                 console.log('Fetching coupons of first page..');
+
                 var deferred = $q.defer();
                 $http.get(apiUriV1+'/coupons?p_num=1&p_size=5&order_by=id&seq=asc')
                     .then(
                         function (response) {
-                            console.log('Fetched successfully coupons of first page');
+                            console.log('Fetched successfully coupons of first page.');
                             $localStorage.coupons = response.data.content;
                             $localStorage.pNum = 1;
 
@@ -32,7 +33,7 @@ angular.module('app').factory('CouponService',
                             deferred.resolve(response);
                         },
                         function (errResponse) {
-                            console.error('Error while loading coupons of first page');
+                            console.error('Error while loading coupons of first page.');
                             deferred.reject(errResponse);
                         }
                     );
@@ -41,11 +42,11 @@ angular.module('app').factory('CouponService',
 
             // 해당 페이지 번호에 대한 쿠폰 리스트 조회
             function getCouponsByPgNum(pNum) {
-                console.log('Fetching coupons of p.'+pNum+'..');
+                console.log('Fetching coupons of p.' + pNum + '..');
 
                 // 현재 페이지 번호에 해당하는 쿠폰 리스트 조회
-                $http.get(apiUriV1+'/coupons?p_num='+pNum+'&p_size=5&order_by=id&seq=asc').then(function(response) {
-                    console.log('Fetched successfully coupons of p.'+pNum+'..');
+                $http.get(apiUriV1+'/coupons?p_num=' + pNum + '&p_size=5&order_by=id&seq=asc').then(function(response) {
+                    console.log('Fetched successfully coupons of p.' + pNum + '..');
                     $localStorage.coupons = response.data.content;
                     $localStorage.pNum = pNum;
 
@@ -59,16 +60,22 @@ angular.module('app').factory('CouponService',
 
             // 현재 페이지 번호에 해당하는 쿠폰 리스트 가져오기
             function getCoupons() {
+                console.log('Fetching coupons.. (coupons: ' + $localStorage.coupons + ")");
+
                 return $localStorage.coupons;
             }
 
             // 페이지 번호들 가져오기
             function getPages() {
+                console.log('Fetching pages.. (pages: ' + $localStorage.pages + ")");
+
                 return $localStorage.pages;
             }
 
             // 쿠폰 생성하기
             function createCoupon(email) {
+                console.log('Creating a coupon.. (email: ' + email + ")");
+
                 if( email == "" || !isEmailFormat(email)) {
                     alert("올바른 이메일 주소를 입력해주세요");
                     return;
@@ -90,6 +97,8 @@ angular.module('app').factory('CouponService',
 
             // 페이지 개수 갱신
             function updatePages(totalPages) {
+                console.log('Updating pages.. (totalPages: ' + totalPages + ")");
+
                 var pages = [];
                 for (var i=1; i<=totalPages;i++) {
                     pages.push(i);
@@ -99,6 +108,8 @@ angular.module('app').factory('CouponService',
 
             // 이메일 형식 검사
             function isEmailFormat(email) {
+                console.log('Checking a email format.. (email: ' + email + ")");
+
                 var regexp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
                 return regexp.test(email);
             }

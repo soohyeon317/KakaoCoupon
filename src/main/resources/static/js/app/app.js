@@ -9,7 +9,8 @@ app.config(['$stateProvider', '$urlRouterProvider',
                             controllerAs:'ctrl',
                             resolve: {
                                 coupons: function ($q, CouponService) {
-                                    console.log('Load coupons');
+                                    //Load coupons of first page.
+
                                     var deferred = $q.defer();
                                     CouponService.loadCouponsOfFirstPage().then(deferred.resolve, deferred.resolve);
                                     return deferred.promise;
