@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-@Service("couponServiceV1")
+@Service
 @Slf4j
 public class CouponService {
 
