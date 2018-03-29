@@ -72,8 +72,8 @@ public class CouponService {
     }
 
     // 쿠폰번호 랜덤 생성
-    public String createRandomCouponNum(int strLength, String Separator, int pos) {
-        log.info("createRandomCouponNum : {},{},{}", strLength, Separator, pos);
+    public String createRandomCouponNum(int strLength, String separator, int pos) {
+        log.info("createRandomCouponNum : {},{},{}", strLength, separator, pos);
 
         final char[] characters = {
                 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
@@ -85,7 +85,7 @@ public class CouponService {
 
         for(int i = 0; i < strLength; i++) {
             sb.append( characters[ random.nextInt( characters.length ) ] );
-            if (i%pos == pos-1 && i != strLength-1) sb.append(Separator);
+            if (i%pos == pos-1 && i != strLength-1) sb.append(separator);
         }
 
         return sb.toString();
