@@ -36,9 +36,6 @@ public class CouponRepositoryTest {
         if(found) result = "soohyeon317@gmail.com";
 
         assertThat(result).isEqualTo(coupon11.getEmail());
-
     }
-
-
 
 }

@@ -103,5 +103,4 @@ angular.module('app').factory('CouponService',
                 return regexp.test(email);
             }
         }
-    ]
-);
+    ]);

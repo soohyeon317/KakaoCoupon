@@ -59,7 +59,6 @@ public class CouponServiceTest {
 
     @Before
     public void setUp() throws Exception {
-
         Mockito.when(couponRepository.save(new_coupon).getEmail())
                 .thenReturn(new_coupon.getEmail());
 
@@ -68,7 +67,6 @@ public class CouponServiceTest {
 
         Mockito.when(couponRepository.isEmailExist(new_coupon.getEmail()))
                 .thenReturn(true);
-
     }
 
     @Test
