@@ -2,6 +2,7 @@ package com.demo.kakaocoupon.api.v1.controller;
 
 import com.demo.kakaocoupon.api.v1.entity.Coupon;
 import com.demo.kakaocoupon.api.v1.service.CouponService;
+import com.demo.kakaocoupon.api.v1.util.CustomErrorType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,16 +30,16 @@ public class CouponController {
      * @return
      */
     @RequestMapping(value = "/coupons", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon.ParamCreateCoupon param)  {
+    public ResponseEntity<?> createCoupon(@RequestBody Coupon.ParamCreateCoupon param)  {
         log.info("Creating Coupon : {}", param);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         if (couponService.isEmailExist(param.getEmail())) {
-            log.error("Unable to create. A coupon with {} already exist", param.getEmail());
+            log.error("Unable to create. A coupon with {} already exist.", param.getEmail());
 
-            return new ResponseEntity<>(new Coupon(null, null, null, null), httpHeaders,HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new CustomErrorType("Unable to create. A coupon with " + param.getEmail() + " already exist."), httpHeaders,HttpStatus.CONFLICT);
         }
 
         Coupon coupon = couponService.saveCoupon(param);
@@ -53,7 +54,7 @@ public class CouponController {
      * @return
      */
     @RequestMapping(value = "/coupons", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Page<Coupon>> getCouponsByPageInfo(Coupon.ParamPageInfo param)  {
+    public ResponseEntity<?> getCouponsByPageInfo(Coupon.ParamPageInfo param)  {
         log.info("Fetching Coupons : {}", param);
 
         HttpHeaders httpHeaders = new HttpHeaders();

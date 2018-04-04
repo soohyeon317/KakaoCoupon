@@ -21,7 +21,10 @@ app.config(['$stateProvider', '$urlRouterProvider',
                             resolve: {
                                 coupons: function ($q, CouponService) {
                                     //Load coupons of first page.
-                                    CouponService.getCouponsByPgNum(1);
+
+                                    var deferred = $q.defer();
+                                    CouponService.loadCouponsOfFirstPage().then(deferred.resolve);
+                                    return deferred.promise;
                                 }
                             }
                         });

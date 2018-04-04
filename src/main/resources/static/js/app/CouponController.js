@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('app').controller('CouponController',
-    ['CouponService', '$scope',
-        function( CouponService) {
+    ['CouponService',
+        function(CouponService) {
             var self = this;
 
             self.coupons = [];
@@ -14,14 +14,14 @@ angular.module('app').controller('CouponController',
             self.getPages = getPages;
 
             // 현재 페이지에 해당하는 쿠폰 리스트 가져오기
-            function getCoupons(){
+            function getCoupons() {
                 console.log('Getting coupons..');
 
                 return CouponService.getCoupons();
             }
 
             // 해당 페이지 번호에 대한 쿠폰 리스트 가져오기
-            function getCouponsByPgNum(pNum){
+            function getCouponsByPgNum(pNum) {
                 console.log('Getting coupons by a page number..');
 
                 return CouponService.getCouponsByPgNum(pNum);
