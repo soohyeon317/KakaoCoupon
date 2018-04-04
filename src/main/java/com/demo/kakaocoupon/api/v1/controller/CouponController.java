@@ -2,7 +2,7 @@ package com.demo.kakaocoupon.api.v1.controller;
 
 import com.demo.kakaocoupon.api.v1.entity.Coupon;
 import com.demo.kakaocoupon.api.v1.service.CouponService;
-import com.demo.kakaocoupon.api.v1.util.CustomErrorType;
+import com.demo.kakaocoupon.api.v1.util.CouponApiError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,10 +39,16 @@ public class CouponController {
         if (couponService.isEmailExist(param.getEmail())) {
             log.error("Unable to create. A coupon with {} already exist.", param.getEmail());
 
-            return new ResponseEntity<>(new CustomErrorType("Unable to create. A coupon with " + param.getEmail() + " already exist."), httpHeaders,HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new CouponApiError("Unable to create. A coupon with " + param.getEmail() + " already exist."), httpHeaders,HttpStatus.CONFLICT);
         }
 
         Coupon coupon = couponService.saveCoupon(param);
+
+        if(coupon == null) {
+            log.error("Unable to create. Error occured while creating a coupon : param = {}", param.getEmail());
+
+            return new ResponseEntity<>(new CouponApiError("Unable to create. Internal server error occured."), httpHeaders,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
         return new ResponseEntity<>(coupon, httpHeaders, HttpStatus.OK);
     }
@@ -61,6 +67,12 @@ public class CouponController {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         Page<Coupon> coupons = couponService.getCouponsByPageInfo(param);
+
+        if(coupons == null) {
+            log.error("Unable to fetch. Error occured while fetching coupons : pageInfo = {}", param);
+
+            return new ResponseEntity<>(new CouponApiError("Unable to fetch. Internal server error occured."), httpHeaders,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
         return new ResponseEntity<>(coupons, httpHeaders, HttpStatus.OK);
     }
