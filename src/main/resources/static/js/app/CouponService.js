@@ -78,7 +78,7 @@ angular.module('app').factory('CouponService',
                 console.log('Creating a coupon.. (email: ' + email + ")");
 
                 if( email == "" || !isEmailFormat(email)) {
-                    alert("올바른 이메일 주소를 입력해주세요");
+                    alert("올바른 이메일 주소를 입력해 주세요");
                     return;
                 }else {
                     var postData = {
