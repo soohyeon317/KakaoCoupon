@@ -51,10 +51,11 @@ public class CouponService {
         int pos = 4;
 
         do {
-            // 현재 쿠폰아이디 리스트 조회
-            couponNumList = couponRepository.findAll().stream().map(c->c.getCoupon_num()).collect(Collectors.toList());
-            // 쿠폰아이디 랜덤 생성
+            // 쿠폰번호 랜덤 생성
             couponNum = createRandomCouponNum(coupNumLength, coupNumSeprt, pos);
+
+            // 현재 쿠폰번호 리스트 조회
+            couponNumList = couponRepository.findAll().stream().map(c->c.getCoupon_num()).collect(Collectors.toList());
         }while(couponNumList.contains(couponNum));
 
 

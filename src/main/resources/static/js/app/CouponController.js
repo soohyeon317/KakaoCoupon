@@ -4,6 +4,7 @@ angular.module('app').controller('CouponController',
     ['CouponService', '$scope',
         function( CouponService) {
             var self = this;
+
             self.coupons = [];
             self.pNum = {};
             self.pages = [];
@@ -50,7 +51,7 @@ angular.module('app').controller('CouponController',
                     btnEmail.onclick();
                 }
             }
-            btnEmail.onclick = function (ev) {
+            btnEmail.onclick = function () {
                 console.log('onClick event(btnEmail)');
 
                 createCoupon(txtBoxEmail.value);

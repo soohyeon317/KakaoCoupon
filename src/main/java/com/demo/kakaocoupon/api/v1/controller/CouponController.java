@@ -38,15 +38,10 @@ public class CouponController {
         if (couponService.isEmailExist(param.getEmail())) {
             log.error("Unable to create. A coupon with {} already exist", param.getEmail());
 
-            return new ResponseEntity<>(null, httpHeaders,HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new Coupon(null, null, null, null), httpHeaders,HttpStatus.CONFLICT);
         }
 
         Coupon coupon = couponService.saveCoupon(param);
-        if(coupon == null) {
-            log.error("Unable to create. Error occured while creating a coupon : param = {}", param.getEmail());
-
-            return new ResponseEntity<>(null, httpHeaders,HttpStatus.INTERNAL_SERVER_ERROR);
-        }
 
         return new ResponseEntity<>(coupon, httpHeaders, HttpStatus.OK);
     }
@@ -65,11 +60,6 @@ public class CouponController {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         Page<Coupon> coupons = couponService.getCouponsByPageInfo(param);
-        if(coupons == null) {
-            log.error("Unable to fetch. Error occured while fetching coupons : pageInfo = {}", param);
-
-            return new ResponseEntity<>(null, httpHeaders,HttpStatus.INTERNAL_SERVER_ERROR);
-        }
 
         return new ResponseEntity<>(coupons, httpHeaders, HttpStatus.OK);
     }
