@@ -1,4 +1,4 @@
-package com.demo.kakaocoupon.api.v1.util;
+package com.demo.kakaocoupon.api.v1.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

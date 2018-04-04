@@ -2,7 +2,7 @@ package com.demo.kakaocoupon.api.v1.controller;
 
 import com.demo.kakaocoupon.api.v1.entity.Coupon;
 import com.demo.kakaocoupon.api.v1.service.CouponService;
-import com.demo.kakaocoupon.api.v1.util.CouponApiError;
+import com.demo.kakaocoupon.api.v1.exception.CouponApiError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
