@@ -20,7 +20,7 @@ KakaoCoupon 프로젝트
   
   >(8) 단위 테스트는 Repository/Service/Controller Junit 테스트 코드 작성
   >>1. 이슈: Junit 테스트 코드 실행 시, Repository 쪽은 성공했지만 null pointer 오류로 인해 Service 쪽은 test case 일부만 성공했고 Controller 쪽은 모두 실패
-  >>1. 원인: Service와 Controller 쪽에서는 Repository의 findAll()의 조회 결과가 null로 리턴
+  >>1. 원인: Service와 Controller 쪽에서는 Repository 연동에 문제가 있어서 save(), findAll() 등의 기능이 제대로 실행되지 않음
   
 - 프로젝트 구조 관련 주요 구성요소(기술, 의존성, 라이브러리 등) 정리
   >(1) Spring boot
