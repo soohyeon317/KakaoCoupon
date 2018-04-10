@@ -60,7 +60,7 @@ public class CouponService {
 
 
         // 쿠폰 생성일시 정하기 위해 현재 날짜와 시간 구함
-        String datetime = LocalDateTime.now()
+        String datetime = LocalDateTime.now() // LocalDateTime을 사용한 이유: Date와 SimpleDateFormatter는 thread safe하지 못하지만 LocalDateTime는 thread safe하다.
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         Coupon coupon = Coupon.builder()
@@ -81,7 +81,7 @@ public class CouponService {
                 ,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'
                 ,'0','1','2','3','4','5','6','7','8','9'
         };
-        StringBuffer sb = new StringBuffer();
+        StringBuffer sb = new StringBuffer(); // StringBuffer 사용한 이유: String은 immutable해서 내용이 변경될때마다 객체를 새로 생성하지만 StringBuffer는 mutable해서 객체는 1번만 생성하고 내용을 변경할 수 있다.
         Random random = new Random();
 
         for(int i = 0; i < strLength; i++) {
